@@ -33,7 +33,7 @@ sourceSets {
 tasks.build.dependsOn tasks.shadowJar
 shadowJar{
     mergeServiceFiles()
-    baseName = 'orderbutler-all'
+    baseName = 'path-example-all'
     classifier = null
     version = null
 }
