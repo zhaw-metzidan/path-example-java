@@ -45,7 +45,7 @@ public class BusinessCaseDatabaseService extends AbstractCrudDatabaseService<Bus
 		@Override
 		public void appendFilter(CriteriaQuery<BusinessCase> criteriaQuery, Root<BusinessCase> root) {
 			CriteriaBuilder cb = getCriteriaBuilder();
-			addPredicate(criteriaQuery, cb.equal(root.get(BusinessCase_.businessCaseObjectType).get(BusinessCaseType_.key), type));
+			addPredicate(criteriaQuery, cb.equal(root.get(BusinessCase_.businessCaseType).get(BusinessCaseType_.key), type));
 		}
 	}
 	
