@@ -65,7 +65,7 @@ public class TestDataService extends AbstractDatabaseService {
 		// Business Cases
 		createTestBusinessCase("Vertrag ZHAW", "Vertrag-Beschreibung", businessCaseType1, user1);
 		createTestBusinessCase("Offerte ETH", "Offerte-Beschreibung", businessCaseType2, user1);
-		createTestBusinessCase("Projekt Uni Zürich", "Projekt-Beschreibung", businessCaseType3, user1);
+		createTestBusinessCase("Projekt Uni ZÃ¼rich", "Projekt-Beschreibung", businessCaseType3, user1);
 		createTestBusinessCase("Showcase EPFL", "Showcase-Beschreibung", businessCaseType4, user2);
 	}
 
