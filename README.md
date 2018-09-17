@@ -3,6 +3,10 @@
 Path Application with sample Java Backend
 * Gradle, Spark, Hibernate, H2
 
+## Live Example
+Live example on Heroku Free (please wait for wakeup): https://path-example-java.herokuapp.com/<br/>
+Users: "admin" and "user" (without quotes), Password: "." (dot without quotes)
+
 ## Required Tools
 * Git (https://git-scm.com/)
 * Node and NPM (https://nodejs.org/)
