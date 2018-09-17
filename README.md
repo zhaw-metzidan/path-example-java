@@ -1,7 +1,7 @@
-### Order Butler
+### Path Example with Java Backend
 
-KTI Order Butler Application
-* Create electronic orders with help of your butler instead of filling out paper forms
+Path Application with sample Java Backend
+* Gradle, Spark, Hibernate, H2
 
 ## Required Tools
 * Git (https://git-scm.com/)
