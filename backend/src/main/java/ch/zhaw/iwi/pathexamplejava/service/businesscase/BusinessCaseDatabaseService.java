@@ -25,7 +25,7 @@ public class BusinessCaseDatabaseService extends AbstractCrudDatabaseService<Bus
 	public void createPathListEntry(BusinessCase entity, PathListEntry<Long> entry) {
 		entry.setKey(entity.getKey(), getKeyName());
 		entry.setName(entity.getName());
-		entry.setTooltip(entity.getName() + ", " + entity.getTitle() + ", Ziel: " + entity.getTarget());
+		entry.setTooltip(entity.getName() + ", " + entity.getTitle());
 		entry.getDetails().add(entity.getTitle());
 	}
 

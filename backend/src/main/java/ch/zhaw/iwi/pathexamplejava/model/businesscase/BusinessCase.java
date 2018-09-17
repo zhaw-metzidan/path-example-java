@@ -12,7 +12,6 @@ public class BusinessCase extends AbstractEntity implements Comparable<BusinessC
 
 	private String name;
 	private String title;
-	private String target;
 	
 	@Column(length = COMMENT_FIELD_LENGTH)
 	private String comments;
@@ -37,14 +36,6 @@ public class BusinessCase extends AbstractEntity implements Comparable<BusinessC
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getTarget() {
-		return target;
-	}
-
-	public void setTarget(String target) {
-		this.target = target;
 	}
 		
 	public BusinessCaseType getBusinessCaseType() {
