@@ -17,12 +17,12 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.persist.jpa.JpaPersistModule;
 
-import ch.zhaw.iwi.orderbutler.service.user.LanguageUtility;
 import ch.zhaw.iwi.pathexamplejava.server.CorsHeaders;
 import ch.zhaw.iwi.pathexamplejava.server.Database;
 import ch.zhaw.iwi.pathexamplejava.service.businesscase.BusinessCaseTypeRestService;
 import ch.zhaw.iwi.pathexamplejava.service.businesscase.BusinessCaseRestService;
 import ch.zhaw.iwi.pathexamplejava.service.exception.ExceptionRestService;
+import ch.zhaw.iwi.pathexamplejava.service.user.LanguageUtility;
 import ch.zhaw.iwi.pathexamplejava.service.user.UserRestService;
 import ch.zhaw.iwi.pathexamplejava.service.user.permission.PermissionFunctionRestService;
 import ch.zhaw.iwi.pathexamplejava.service.user.permission.PermissionRoleRestService;

@@ -1,4 +1,4 @@
-package ch.zhaw.iwi.orderbutler.service;
+package ch.zhaw.iwi.pathexamplejava.service;
 
 import org.junit.BeforeClass;
 

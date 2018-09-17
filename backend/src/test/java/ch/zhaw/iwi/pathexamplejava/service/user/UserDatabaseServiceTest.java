@@ -1,7 +1,7 @@
-package ch.zhaw.iwi.orderbutler.service.user;
+package ch.zhaw.iwi.pathexamplejava.service.user;
 
-import ch.zhaw.iwi.orderbutler.service.AbstractCrudDatabaseServiceTest;
 import ch.zhaw.iwi.pathexamplejava.model.user.User;
+import ch.zhaw.iwi.pathexamplejava.service.AbstractCrudDatabaseServiceTest;
 import ch.zhaw.iwi.pathexamplejava.service.user.UserDatabaseService;
 
 public class UserDatabaseServiceTest extends AbstractCrudDatabaseServiceTest<User, Long> {

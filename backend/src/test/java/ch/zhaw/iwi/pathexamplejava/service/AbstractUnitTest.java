@@ -1,4 +1,4 @@
-package ch.zhaw.iwi.orderbutler.service;
+package ch.zhaw.iwi.pathexamplejava.service;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;

@@ -1,7 +1,7 @@
-package ch.zhaw.iwi.orderbutler.service.businesscase;
+package ch.zhaw.iwi.pathexamplejava.service.businesscase;
 
-import ch.zhaw.iwi.orderbutler.service.AbstractCrudDatabaseServiceTest;
 import ch.zhaw.iwi.pathexamplejava.model.businesscase.BusinessCase;
+import ch.zhaw.iwi.pathexamplejava.service.AbstractCrudDatabaseServiceTest;
 import ch.zhaw.iwi.pathexamplejava.service.businesscase.BusinessCaseDatabaseService;
 
 public class BusinessCaseDatabaseServiceTest extends AbstractCrudDatabaseServiceTest<BusinessCase, Long> {

@@ -1,7 +1,7 @@
-package ch.zhaw.iwi.orderbutler.service.user;
+package ch.zhaw.iwi.pathexamplejava.service.user;
 
-import ch.zhaw.iwi.orderbutler.service.AbstractCrudRestServiceTest;
 import ch.zhaw.iwi.pathexamplejava.model.user.User;
+import ch.zhaw.iwi.pathexamplejava.service.AbstractCrudRestServiceTest;
 import ch.zhaw.iwi.pathexamplejava.service.user.UserRestService;
 
 public class UserRestServiceTest extends AbstractCrudRestServiceTest<User, Long> {

@@ -1,4 +1,4 @@
-package ch.zhaw.iwi.orderbutler.service.user;
+package ch.zhaw.iwi.pathexamplejava.service.user;
 
 import java.util.HashMap;
 import java.util.Map;
