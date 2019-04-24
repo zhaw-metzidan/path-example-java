@@ -6,6 +6,7 @@
 		<class>ch.zhaw.iwi.pathexamplejava.model.user.permission.PermissionFunction</class>
 		<class>ch.zhaw.iwi.pathexamplejava.model.user.permission.PermissionRole</class>
 		<properties>
+			
 			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:assessmentTool;DB_CLOSE_DELAY=-1" />
 			<property name="javax.persistence.jdbc.user" value="sa" />
@@ -14,7 +15,18 @@
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="show_sql" value="true" />
 			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />
+		
+		<!-- 	
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/hibernatedb" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="password" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL92Dialect" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="show_sql" value="true" />
+			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />
 
+		 -->
 			<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
 			<property name="hibernate.c3p0.max_size" value="10" />
 			<property name="hibernate.c3p0.min_size" value="1" />

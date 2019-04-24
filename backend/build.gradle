@@ -16,6 +16,7 @@ tasks.withType(JavaCompile) {
 
 repositories {
     jcenter()
+    maven { url "https://dl.bintray.com/metzidan/PathBackendLibrary" }
 }
 
 task stage {
@@ -44,6 +45,9 @@ jpaModelgen {
 }
 
 dependencies {
+
+	compile 'testgroup:metzidanPackage:0.0.3'
+	
 	compile 'org.slf4j:slf4j-simple:1.7.21'
 	compile 'org.slf4j:slf4j-log4j12:1.7.21'
     compile 'org.hibernate:hibernate-core:5.3.6.Final'
