@@ -6,7 +6,10 @@ import static spark.Spark.port;
 import static spark.Spark.staticFiles;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 
@@ -39,7 +42,7 @@ public class Main {
 	public static void main(String[] args) {
 		initFrontend();
 		initServer();
-		initDatabase();
+		initDatabase("h2");
 
 		// Cache
 		before((request, response) -> {
@@ -115,6 +118,43 @@ public class Main {
 		
 		injector.getInstance(Database.class).init("9998", "9999", true);
 	}
+	
+	/**
+	 * Code von Daniel Metzinger
+	 * @param database the name of the databse, e.g. h2 or postgresql
+	 */
+	private static void initDatabase(String database) {
+		Properties properties = new Properties();
+		Properties propFile = new Properties();
+		try {
+			// set location of database properties file
+			InputStream input = new FileInputStream("src/main/resources/database.properties");
+			// load from properties file
+			propFile.load(input);
+			
+			ProcessBuilder processBuilder = new ProcessBuilder();
+//			if (processBuilder.environment().get(HEROKU_PORT) != null) {
+			// read values from propertiesfile place them in persistance.xml file
+			properties.put("javax.persistence.jdbc.driver", propFile.getProperty(database+".jdbc.driver"));
+			properties.put("javax.persistence.jdbc.url", propFile.getProperty(database+".jdbc.url"));
+			properties.put("javax.persistence.jdbc.user", propFile.getProperty(database+".jdbc.user"));
+			properties.put("javax.persistence.jdbc.password", propFile.getProperty(database+".jdbc.password"));
+			properties.put("hibernate.dialect", propFile.getProperty(database+".hibernate.dialect"));
+//			}
+		} catch (FileNotFoundException e) {
+			System.out.println("Propertiesfile not found!");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("Propertiesfile could not be loaded!");
+			e.printStackTrace();
+		}
+		persistModule.properties(properties);
+		injector = Guice.createInjector(persistModule);
+		
+		injector.getInstance(Database.class).init("9998", "9999", true);
+	}
+	
+	
 
 	public static void initServer() {
 		port(getHerokuAssignedPort());
