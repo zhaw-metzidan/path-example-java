@@ -10,6 +10,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -38,11 +40,15 @@ public class Main {
 	
 	private static final JpaPersistModule persistModule = new JpaPersistModule("AssessmentTool");
 	private static Injector injector;
+	
+	private static String selectedDatabase;
+	private static final String defaultDatabase = "h2"; //default database
+	private static final String propertiesFilePath = "src/main/resources/database.properties";
 
 	public static void main(String[] args) {
 		initFrontend();
 		initServer();
-		initDatabase("h2");
+		initDatabase(getSelectedDatabase());
 
 		// Cache
 		before((request, response) -> {
@@ -119,28 +125,92 @@ public class Main {
 		injector.getInstance(Database.class).init("9998", "9999", true);
 	}
 	
+//----
+	
 	/**
-	 * Code von Daniel Metzinger
+	 * initialize the database
 	 * @param database the name of the databse, e.g. h2 or postgresql
+	 * @author Daniel Metzinger
 	 */
 	private static void initDatabase(String database) {
 		Properties properties = new Properties();
+		
+		// get values from propertis File
+		ArrayList<String> propertieList = getProperties(new ArrayList<>(Arrays.asList(
+				database+".jdbc.driver",
+				database+".jdbc.url",
+				database+".jdbc.user",
+				database+".jdbc.password",
+				database+".hibernate.dialect")));
+			
+		// set values from propertiesfile place them in persistance.xml file
+		properties.put("javax.persistence.jdbc.driver", propertieList.get(0));
+		properties.put("javax.persistence.jdbc.url", propertieList.get(1));
+		properties.put("javax.persistence.jdbc.user", propertieList.get(2));
+		properties.put("javax.persistence.jdbc.password", propertieList.get(3));
+		properties.put("hibernate.dialect", propertieList.get(4));
+			
+		persistModule.properties(properties);
+		injector = Guice.createInjector(persistModule);
+		
+		injector.getInstance(Database.class).init("9998", "9999", true);
+	}
+	
+	/**
+	 * set selected database to value defiend in propertiesfile
+	 * @author Daniel Metzinger
+	 */
+	public static void setSelectedDatabaseFromProperties() {
+		
+		// call readFromPropertiesfile method to get values from properties
+		selectedDatabase = getProperties(new ArrayList<>(Arrays.asList("db"))).get(0);
+		
+		// if nothing is declared in propertiesfile, set database value to default
+		if (selectedDatabase == null || selectedDatabase == "")
+			setSelectedDatabase("");
+	}
+	
+	/**
+	 * alternative set variable value of selectedDatabase with attribute value and not from propertiesfile
+	 * @param database name
+	 * @author Daniel Metzinger
+	 */
+	public static void setSelectedDatabase(String database) {
+		//if nothing specified set value as default database
+		if (database == null || database == "")
+			selectedDatabase = defaultDatabase;
+		else
+			selectedDatabase = database;
+	}
+	
+	/**
+	 * get String variable value of selectedDatabase
+	 * @return String name of selected database
+	 * @author Daniel Metzinger
+	 */
+	public static String getSelectedDatabase() {
+		setSelectedDatabaseFromProperties();
+		return selectedDatabase;
+	}
+	
+	/**
+	 * Get values from properties file and return them as ArrayList
+	 * @param properties
+	 * @return ArrayList<String> with all property values
+	 * @author Daniel Metzinger
+	 */
+	public static ArrayList<String> getProperties(ArrayList<String> properties) {
+		ArrayList<String> returnValue = new ArrayList<>();
 		Properties propFile = new Properties();
 		try {
 			// set location of database properties file
-			InputStream input = new FileInputStream("src/main/resources/database.properties");
+			InputStream input = new FileInputStream(propertiesFilePath);
 			// load from properties file
 			propFile.load(input);
 			
-			ProcessBuilder processBuilder = new ProcessBuilder();
-//			if (processBuilder.environment().get(HEROKU_PORT) != null) {
-			// read values from propertiesfile place them in persistance.xml file
-			properties.put("javax.persistence.jdbc.driver", propFile.getProperty(database+".jdbc.driver"));
-			properties.put("javax.persistence.jdbc.url", propFile.getProperty(database+".jdbc.url"));
-			properties.put("javax.persistence.jdbc.user", propFile.getProperty(database+".jdbc.user"));
-			properties.put("javax.persistence.jdbc.password", propFile.getProperty(database+".jdbc.password"));
-			properties.put("hibernate.dialect", propFile.getProperty(database+".hibernate.dialect"));
-//			}
+			//for each property read value from properties File and save it in ArrayList
+			properties.forEach(prop -> returnValue.add(propFile.getProperty(prop)));
+			
 		} catch (FileNotFoundException e) {
 			System.out.println("Propertiesfile not found!");
 			e.printStackTrace();
@@ -148,14 +218,11 @@ public class Main {
 			System.out.println("Propertiesfile could not be loaded!");
 			e.printStackTrace();
 		}
-		persistModule.properties(properties);
-		injector = Guice.createInjector(persistModule);
-		
-		injector.getInstance(Database.class).init("9998", "9999", true);
+		return returnValue;
 	}
-	
-	
 
+//----
+	
 	public static void initServer() {
 		port(getHerokuAssignedPort());
 		CorsHeaders.init();
