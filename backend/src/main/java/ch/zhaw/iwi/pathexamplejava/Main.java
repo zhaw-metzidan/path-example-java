@@ -135,7 +135,7 @@ public class Main {
 	private static void initDatabase(String database) {
 		Properties properties = new Properties();
 		
-		// get values from propertis File
+		// get values from properties File
 		ArrayList<String> propertieList = getProperties(new ArrayList<>(Arrays.asList(
 				database+".jdbc.driver",
 				database+".jdbc.url",
@@ -143,7 +143,7 @@ public class Main {
 				database+".jdbc.password",
 				database+".hibernate.dialect")));
 			
-		// set values from propertiesfile place them in persistance.xml file
+		// set values from properties file place them in persistance.xml file
 		properties.put("javax.persistence.jdbc.driver", propertieList.get(0));
 		properties.put("javax.persistence.jdbc.url", propertieList.get(1));
 		properties.put("javax.persistence.jdbc.user", propertieList.get(2));

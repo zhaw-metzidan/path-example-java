@@ -181,32 +181,9 @@ export class GuiModel {
                             "width": 2
                         },
                         {
-                            "id": "manager",
-                            "type": "autocomplete",
-                            "name": "Manager",
-                            "wordSearchEnabled": true,
-                            "url": "/user",
-                            "form": "UserForm",
-                            "width": 1,
-                            "required": true,
-                            "readonly": true,
-                            "defaultKey": "userKey"
-                        },
-                        {
-                            "id": "businessCaseType",
-                            "type": "autocomplete",
-                            "name": "BusinessCaseType",
-                            "wordSearchEnabled": true,
-                            "url": "/businessCaseType",
-                            "width": 1,
-                            "required": true,
-                            "readonly": true,
-                            "defaultKey": "businessCaseTypeKey"
-                        },
-                        {
-                            "id": "comments",
+                            "id": "modul-description",
                             "type": "text",
-                            "name": "Comments",
+                            "name": "Modul-description",
                             "newRow": true,
                             "maxLength": 4000,
                             "height": 5,
@@ -344,6 +321,36 @@ export class GuiModel {
                             "url": "/businessCase",
                             "form" : {
                                 "form" : "BusinessCaseForm"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "modulpage",
+                    "name": "Sub Page",
+                    "elementList": [
+                        {
+                            "type": "backbutton",
+                        },
+                        {
+                            "type": "newButton",
+                            "name": "NewModul",
+                            "icon": "fa-cog",
+                            "color": "green",
+                            "width": 2,
+                            "form" : {
+                                "form" : "ModulForm"
+                            }
+                        },
+                        {
+                            "type": "list",
+                            "name": "Modul",
+                            "icon": "fa-cog",
+                            "color": "sun-flower",
+                            "search": true,
+                            "url": "/modul",
+                            "form" : {
+                                "form" : "ModulForm"
                             }
                         }
                     ]

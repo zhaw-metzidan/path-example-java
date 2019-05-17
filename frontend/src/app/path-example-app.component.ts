@@ -1,39 +1,40 @@
 /* angular/path imports */
-import {Component} from '@angular/core';
-import * as path from "path-framework/app/path-framework/path";
+import {Component} from "@angular/core";
 
 /* model imports */
-import {GuiModel} from './gui-model/guimodel';
+import {GuiModel} from "./gui-model/guimodel";
 import {TranslationService} from "path-framework/app/path-framework/service/translation.service";
 import {PathExampleTranslationService} from "./path-example-translation-service";
+import {PathService} from "path-framework/app/path-framework/service/path.service";
+import {PathAppComponent} from "path-framework/app/path-framework/path-app.component";
 
 @Component({
-    selector: 'path-application',
-    templateUrl: './../../node_modules/path-framework/app/path-framework/path-app.component.html',
+    selector: "path-application",
+    templateUrl: "./../../node_modules/path-framework/app/path-framework/path-app.component.html",
     // providers: [{ provide: path.PathService, useClass: path.PathMockService }]
-    providers: [path.PathService, { provide: TranslationService, useClass: PathExampleTranslationService }]
+    providers: [PathService, { provide: TranslationService, useClass: PathExampleTranslationService }]
 })
-export class PathExampleAppComponent extends path.PathAppComponent {
+export class PathExampleAppComponent extends PathAppComponent {
 
     private _appConfig = new GuiModel();
 
-    constructor(pathService: path.PathService, translationService: TranslationService) {
+    constructor(pathService: PathService, translationService: TranslationService) {
         super(pathService, translationService);
     }
 
-    protected getFrontendVersion():string {
+    protected getFrontendVersion(): string {
         return "0.0.6-SNAPSHOT";
     }
 
-    protected getStartPage():string {
+    protected getStartPage(): string {
         return "mainmenu";
     }
 
-    protected getApplicationLogo():string {
+    protected getApplicationLogo(): string {
         return null;
     }
 
-    protected getOwnUserForm():string {
+    protected getOwnUserForm(): string {
         return "OwnUserForm";
     }
 
@@ -45,21 +46,21 @@ export class PathExampleAppComponent extends path.PathAppComponent {
     }
 
     public getBackendUrl() {
-        if (window.location.hostname.indexOf("localhost") != -1) {
+        if (window.location.hostname.indexOf("localhost") !== -1) {
             return "http://localhost:4567/services";
         }
-        let url:string = window.location.href;
+        let url: string = window.location.href;
         url = url.replace("/#", "");
         if (url.endsWith("/")) {
             return url + "services";
         }
         return url + "/services";
     }
-    
+
     protected getBeans() {
         return {};
     }
-    
+
     protected getHandlers() {
         return {};
     }

@@ -15,7 +15,12 @@
     "baseUrl": "",
     "types": []
   },
+  "include": [
+    "./../src",
+    "./../node_modules/path-framework"
+  ],
   "exclude": [
+    "./../node_modules/path-framework/tests",
     "test.ts",
     "**/*.spec.ts"
   ]

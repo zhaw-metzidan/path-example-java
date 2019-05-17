@@ -1,15 +1,15 @@
 import {Injectable} from "@angular/core";
-import {TranslationService} from "path-framework/app/path-framework/service/translation.service"
+import {TranslationService} from "path-framework/app/path-framework/service/translation.service";
 
 @Injectable()
 export class PathExampleTranslationService extends TranslationService {
 
-    public getSupportedLanguageCodes() : string[] {
+    public getSupportedLanguageCodes(): string[] {
         return ["en", "de", "it", "nl"];
     }
 
-    protected getTranslation(key:string) : string {
-        let myTranslations = this.createTranslationMap(this.getPathExampleTranslations());
+    protected getTranslation(key: string): string {
+        const myTranslations = this.createTranslationMap(this.getPathExampleTranslations());
         // prefer custom translations
         if (myTranslations.get(key) == null) {
             return super.getTranslation(key);
@@ -18,28 +18,38 @@ export class PathExampleTranslationService extends TranslationService {
     }
 
     private getPathExampleTranslations() {
-        let languageCode: string = this.getUserLanguage();
+        const languageCode: string = this.getUserLanguage();
 
         // put additional application translations here
-        if (languageCode == "de") {
+        if (languageCode === "de") {
             return {
                 "Admin": "Admin",
                 "AddPermissionRole": "Rolle hinzufügen",
-                "BusinessCase": "Geschäftsfall",
-                "BusinessCaseType": "Geschäftsfall-Typ",
-                "BusinessCases": "Geschäftsfälle",
+                "BusinessCase": "Modul",
+                "BusinessCaseType": "Modul-Typ",
+                "BusinessCases": "ModulTafel",
+                "BusinessCase2": "Geschäftsfall",
+                "BusinessCaseType2": "Geschäftsfall-Typ",
+                "BusinessCases2": "Geschäftsfälle",
+                "Modul-Name": "Modul-Name",
+                "Modul-id": "Modul-kürzel",
+                "Modul-description": "Modul Beschreibung",
+                "Modul": "Modul",
+                "ModulType": "ModulTyp",
+                "ModulTafel": "ModulTafel",
                 "CreationDate": "Erstellungsdatum",
+                "NewModul": "Neues Modul",
                 "ClosingDate": "Gültig bis",
                 "Comments": "Kommentar",
                 "EditUser": "Benutzer bearbeiten",
-                "EditBusinessCase": "Geschäftsfall bearbeiten",
+                "EditBusinessCase": "Modul bearbeiten",
                 "EMail": "E-Mail",
                 "FamilyName": "Nachname",
                 "FirstName": "Vorname",
                 "FinishDate": "Bearbeitungsdatum",
                 "Manager": "Manager",
                 "Name": "Name",
-                "NewBusinessCase": "Neuer Geschäftsfall",
+                "NewBusinessCase": "Neues Modul",
                 "NewUser": "Neuer Benutzer",
                 "Password": "Passwort",
                 "PermissionRole": "Rolle",
@@ -50,21 +60,22 @@ export class PathExampleTranslationService extends TranslationService {
                 "SearchRequired": "Suche notwendig",
                 "SortOrder": "Reihenfolge",
                 "Text": "Text",
-                "Title": "Titel",
+                "Title": "Modukürzel",
                 "User": "Benutzer",
                 "UserPermissionRole": "Benutzerrolle",
                 "Users": "Benutzer",
                 "Value": "Wert",
                 "ValueDescription": "Wert-Beschreibung",
                 "Width": "Breite"
-            }
+            };
         } else {
             return {
                 "Admin": "Admin",
                 "BusinessCases": "Business Cases",
+                "Modul": "Modul",
                 "NotImplemented": "User account is not implemented",
                 "Reset": "Reset",
-            }
+            };
         }
     }
 
